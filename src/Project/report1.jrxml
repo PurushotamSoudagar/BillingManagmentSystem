@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null"  pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eb22dc9e-be9c-42d6-885c-a55f4a03b1f9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="invoice_no" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     buyer.*,
+     bill.*,
+     bill.`bill_id` AS bill_bill_id,
+     bill.`cust_id` AS bill_cust_id,
+     bill.`date` AS bill_date,
+     bill_details.`det_id` AS bill_details_det_id,
+     bill_details.`det_bill_id` AS bill_details_det_bill_id,
+     bill_details.`barcode_id` AS bill_details_barcode_id,
+     bill_details.`price` AS bill_details_price,
+     bill_details.`qty` AS bill_details_qty,
+     bill_details.`total` AS bill_details_total,
+     buyer.`buyer_id` AS buyer_buyer_id,
+     buyer.`name` AS buyer_name,
+     buyer.`contact` AS buyer_contact,
+     buyer.`email` AS buyer_email,
+     buyer.`address` AS buyer_address,
+     buyer.`gender` AS buyer_gender,
+     bill.`bill_id` AS bill_bill_id,
+     bill.`cust_id` AS bill_cust_id,
+     bill.`date` AS bill_date,
+     bill_details.`det_id` AS bill_details_det_id,
+     bill_details.`det_bill_id` AS bill_details_det_bill_id,
+     bill_details.`barcode_id` AS bill_details_barcode_id,
+     bill_details.`price` AS bill_details_price,
+     bill_details.`qty` AS bill_details_qty,
+     bill_details.`total` AS bill_details_total,
+     product.`pro_id` AS product_pro_id,
+     product.`product` AS product_product,
+     product.`category` AS product_category,
+     product.`brand` AS product_brand,
+     product.`costprice` AS product_costprice,
+     product.`retailprice` AS product_retailprice,
+     product.`qty` AS product_qty,
+     product.`barcode` AS product_barcode,
+     product.`status` AS product_status,
+     buyer.`buyer_id` AS buyer_buyer_id,
+     buyer.`name` AS buyer_name,
+     buyer.`contact` AS buyer_contact,
+     buyer.`email` AS buyer_email,
+     buyer.`address` AS buyer_address,
+     buyer.`gender` AS buyer_gender
+FROM
+     `bill` bill inner join
+     `bill_details` bill_details inner join
+     `buyer` buyer inner join
+     `product` product where  bill.`bill_id`= bill_details.`det_bill_id` and  bill_details.`barcode_id`=  product.`barcode` and  bill.`cust_id`= buyer.`buyer_id` and bill.`bill_id`=$P{invoice_no};]]>
+	</queryString>
+	<field name="buyer_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="contact" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="address" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bill_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cust_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bill_bill_id" class="java.lang.Integer"/>
+	<field name="bill_cust_id" class="java.lang.Integer"/>
+	<field name="bill_date" class="java.sql.Timestamp"/>
+	<field name="bill_details_det_id" class="java.lang.Integer"/>
+	<field name="bill_details_det_bill_id" class="java.lang.Integer"/>
+	<field name="bill_details_barcode_id" class="java.lang.Integer"/>
+	<field name="bill_details_price" class="java.lang.Integer"/>
+	<field name="bill_details_qty" class="java.lang.Integer"/>
+	<field name="bill_details_total" class="java.lang.Integer"/>
+	<field name="buyer_buyer_id" class="java.lang.Integer"/>
+	<field name="buyer_name" class="java.lang.String"/>
+	<field name="buyer_contact" class="java.lang.String"/>
+	<field name="buyer_email" class="java.lang.String"/>
+	<field name="buyer_address" class="java.lang.String"/>
+	<field name="buyer_gender" class="java.lang.String"/>
+	<field name="product_pro_id" class="java.lang.Integer"/>
+	<field name="product_product" class="java.lang.String"/>
+	<field name="product_category" class="java.lang.String"/>
+	<field name="product_brand" class="java.lang.String"/>
+	<field name="product_costprice" class="java.lang.Integer"/>
+	<field name="product_retailprice" class="java.lang.Integer"/>
+	<field name="product_qty" class="java.lang.Integer"/>
+	<field name="product_barcode" class="java.lang.Integer"/>
+	<field name="product_status" class="java.lang.String"/>
+	<variable name="bill_details_total_1" class="java.lang.Integer" resetType="Group" resetGroup="bill" calculation="Sum">
+		<variableExpression><![CDATA[$F{bill_details_total}]]></variableExpression>
+	</variable>
+	<group name="bill">
+		<groupHeader>
+			<band height="71">
+				<staticText>
+					<reportElement x="186" y="0" width="144" height="20" uuid="04e8e25b-a2c5-4deb-a024-1fc86753bb3e"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PRODUCT DETAILS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="51" width="106" height="20" uuid="42020517-f700-40da-a54a-836b45066edc"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[pro_barcode]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="106" y="51" width="134" height="20" uuid="038450de-6106-4af2-abe2-7e8a22603ef1"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[pro_name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="240" y="51" width="132" height="20" uuid="faa00038-efbf-433a-be0e-55e6c9995829"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[pro_brand]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="372" y="51" width="39" height="20" uuid="64589fd6-95c5-4cbb-b13d-c62978e49cee"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[price]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="408" y="51" width="39" height="20" uuid="7a1d93fd-26b8-4145-a030-aede80ccadb7"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[qty]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="447" y="51" width="64" height="20" uuid="114fcaf0-e0bb-4135-b703-090b8e4f5225"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[total]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="188" splitType="Stretch">
+			<staticText>
+				<reportElement x="22" y="5" width="138" height="44" uuid="57a2b8c2-4a35-4b46-a79b-f30e4341633d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="5" width="148" height="20" uuid="e3c01eac-d570-4e9a-88f3-3c4f86aeadf5"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SOUDAGAR SHOP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="25" width="139" height="20" uuid="f7a07fe8-9e63-49da-87ee-23b680c92668"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AT POST SHIRODA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="45" width="100" height="20" uuid="3c433447-a344-413d-85aa-2a843421cacf"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PIN : 416518]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="53" width="133" height="20" uuid="2bfcceca-42f9-4973-ab31-471a8aef03e2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INOVICE NUMBER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="53" width="100" height="20" uuid="6e4679df-fafa-4f35-829d-cd38b9300270"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATE & TIME]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="206" y="73" width="100" height="20" uuid="651a39d7-df0c-47a6-b7f8-6556c4810d18"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="22" y="113" width="100" height="20" uuid="6f39d4a3-237a-48fb-b191-93bb1937f944"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BILLED TO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="6" y="105" width="549" height="1" uuid="ac574d2b-62d3-47cf-9ab7-53edf037d447"/>
+			</line>
+			<staticText>
+				<reportElement x="22" y="133" width="100" height="20" uuid="33ade241-7b20-479c-aae8-12553f04f9e6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTACT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="153" width="100" height="20" uuid="7ac8b9dc-a102-4ca8-b51a-e150ff64e0ee"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ADDRESS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="179" width="549" height="1" uuid="9591d51b-27f8-4d6c-9652-029f3dd04c44"/>
+			</line>
+			<textField>
+				<reportElement x="27" y="73" width="100" height="20" uuid="7dc7e1cf-8d13-49d7-a968-445ef1586ade"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bill_bill_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="113" width="100" height="20" uuid="f0e47ded-ef90-4299-bcdd-1d5fcd24871f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="133" width="100" height="20" uuid="1851a366-1924-4b30-aa9d-28302f49adde"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contact}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="153" width="100" height="20" uuid="c5d136fd-a8ae-4328-baf4-acdd7b3cd286"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{buyer_address}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="0" width="100" height="20" uuid="2f6268b9-813b-4180-9813-200cf085739f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bill_details_barcode_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="0" width="134" height="20" uuid="ebaf75bc-a178-4250-8f38-ea1e47baf31c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_product}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="142" height="20" uuid="c5e5d410-fe83-4121-bd20-995333de063d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_brand}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="0" width="39" height="20" uuid="565c0a39-7e5f-4854-9fc9-775bfe7cda2b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bill_details_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="0" width="36" height="20" uuid="d861c684-9d2e-4396-8378-4bae4327662b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bill_details_qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="447" y="0" width="64" height="20" uuid="16295c07-9522-4f0d-ac36-d51011d82815"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bill_details_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="43" splitType="Stretch"/>
+	</summary>
+</jasperReport>
